@@ -1,0 +1,527 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "samplingRate": "cr:samplingRate",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The Hugging Face git repository.",
+      "contentUrl": "https://anonymous.4open.science/r/TRACE-benchmark",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-default",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "default/*/*.parquet"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "default_splits/split_name"
+      },
+      "@id": "default_splits",
+      "name": "default_splits",
+      "description": "Splits for the default config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "default_splits/split_name": "train"
+        },
+        {
+          "default_splits/split_name": "validation"
+        },
+        {
+          "default_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "default",
+      "description": "TRACE - 'default' subset\n\nAdditional information:\n- 3 splits: train, validation, test\n- 1 skipped column: turns",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "default/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "default_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/dialogue_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "dialogue_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/city",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "city"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/scenario",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "default/scenario/persona_type",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "scenario"
+                },
+                "transform": {
+                  "jsonPath": "persona_type"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/scenario/persona_description",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "scenario"
+                },
+                "transform": {
+                  "jsonPath": "persona_description"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/scenario/primary_poi_type",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "scenario"
+                },
+                "transform": {
+                  "jsonPath": "primary_poi_type"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/scenario/travel_context",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "scenario"
+                },
+                "transform": {
+                  "jsonPath": "travel_context"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/referenced_pois",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "default/referenced_pois/business_id",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "referenced_pois"
+                },
+                "transform": {
+                  "jsonPath": "business_id"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/referenced_pois/name",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "referenced_pois"
+                },
+                "transform": {
+                  "jsonPath": "name"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/referenced_pois/poi_type",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "referenced_pois"
+                },
+                "transform": {
+                  "jsonPath": "poi_type"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/referenced_pois/stars",
+              "dataType": "cr:Float64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "referenced_pois"
+                },
+                "transform": {
+                  "jsonPath": "stars"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/referenced_pois/categories",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "referenced_pois"
+                },
+                "transform": {
+                  "jsonPath": "categories"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/referenced_pois/address",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "referenced_pois"
+                },
+                "transform": {
+                  "jsonPath": "address"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/referenced_pois/price_range",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "referenced_pois"
+                },
+                "transform": {
+                  "jsonPath": "price_range"
+                }
+              }
+            }
+          ],
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/metadata",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "default/metadata/model",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "model"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/metadata/generated_at",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "generated_at"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/metadata/n_candidate_pois",
+              "dataType": "cr:Int64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "n_candidate_pois"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/metadata/candidate_poi_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "candidate_poi_ids"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/metadata/open_set_pool_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "open_set_pool_ids"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/metadata/difficulty",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "difficulty"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "TRACE",
+  "description": "TRACE is a 10,000-dialogue benchmark for conversational tourism recommendation that jointly tests three competencies: (1) recommendation accuracy, (2) review-grounded citation evidence, and (3) rejection recovery. Each multi-turn dialogue between a persona-driven user and an assistant recommender carries verbatim review-span citation pointers (review_id + character offsets) into a shared knowledge base of 2,400 Yelp points of interest (restaurants, attractions, hotels) across 8 U.S. cities and 34,208 reviews. 29.4% of dialogues contain explicit reject_and_refine turns that probe recovery. The release contains 8,001 train / 999 validation / 1,000 test dialogues (stratified by city x POI-type, seed 42), 47 persona archetypes, four difficulty tiers, and an open-set candidate pool (~50-100 POIs per dialogue) alongside the closed 8-POI protocol. Companion artifacts: 14 baseline implementations and a 25-metric evaluation toolkit.",
+  "alternateName": [
+    "Tourism Recommendation with Accountable Citation Evidence",
+    "TRACE Benchmark"
+  ],
+  "creator": [
+    {
+      "@type": "Organization",
+      "name": "Anonymous Authors"
+    }
+  ],
+  "keywords": [
+    "conversational recommendation",
+    "tourism recommendation",
+    "point of interest",
+    "citation grounding",
+    "review-grounded recommendation",
+    "rejection recovery",
+    "multi-turn dialogue",
+    "open-set evaluation",
+    "Yelp",
+    "benchmark",
+    "datasets",
+    "natural language processing"
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0.0",
+  "datePublished": "2026-05-02",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "usageInfo": "Synthetic content authored by us (dialogue structure, non-quote turn text, grounding annotations, quote_spans positional metadata, code) is released under CC BY 4.0. Verbatim Yelp review text is NOT redistributed: in released dialogue text it appears as [Q:N] placeholders backed by positional metadata (review ID + character offsets), and is hydrated locally from a user-obtained Yelp Open Dataset bundle under the Yelp Dataset User Agreement (non-commercial, non-sublicensable, revocable; https://www.yelp.com/dataset). Yelp-derived POI metadata (name, address, lat/lon, categories, stars, price) is included under the Yelp ToU 4.E academic-publication carve-out. business_id and review_id values appear as bare factual identifiers. See NOTICE.md for the full clause-by-clause split.",
+  "citeAs": "@misc{trace2026anonymous,\n  title  = {TRACE: Tourism Recommendation with Accountable Citation Evidence},\n  author = {Anonymous Authors},\n  year   = {2026},\n  note   = {Anonymous review submission}\n}",
+  "rai:hasSyntheticData": true,
+  "prov:wasGeneratedBy": {
+    "@type": "prov:Activity",
+    "rdfs:label": "TRACE synthetic-dialogue generation pipeline",
+    "description": "Five-stage pipeline orchestrated by DSPy and executed by gpt-5.4-mini: (1) scenario construction conditioned on a persona archetype, (2) candidate POI selection (8 POIs sampled by stratified rating/category from the Yelp Open Dataset), (3) multi-turn dialogue generation with tier-specific reject_and_refine turns and verbatim review-span citations, (4) automated quality validation (turn structure, action coverage, POI/review references, per-quote fuzzy match >= 0.80 partial ratio), and (5) difficulty annotation (Easy/Medium/Hard/Expert) and stratified train/validation/test split (seed 42).",
+    "prov:used": [
+      {
+        "@type": "prov:Entity",
+        "rdfs:label": "gpt-5.4-mini",
+        "description": "Large language model used as both the dialogue generator and the structured-output engine via DSPy signatures. Single-LLM dependence is documented in the dataset's known limitations."
+      },
+      {
+        "@type": "prov:Entity",
+        "rdfs:label": "DSPy",
+        "description": "Programmatic-prompting framework providing typed signatures for action transitions, citation pointers, and grounding annotations during generation.",
+        "url": "https://github.com/stanfordnlp/dspy"
+      },
+      {
+        "@type": "prov:Entity",
+        "rdfs:label": "Yelp Open Dataset",
+        "description": "Source of business metadata, review IDs, and review text (used only at generation time; review text is NOT redistributed in the released dataset).",
+        "url": "https://www.yelp.com/dataset"
+      }
+    ],
+    "prov:startedAtTime": "2026-04-23T00:00:00Z",
+    "prov:endedAtTime": "2026-04-24T23:59:59Z"
+  },
+  "rai:dataCollection": "Synthetic dialogues were generated with DSPy and gpt-5.4-mini conditioned on (a) one of 47 persona archetypes, (b) 8 candidate POIs sampled from the Yelp Open Dataset by stratified rating/category, and (c) tier-specific dialogue scenario prompts. The five-stage pipeline is: scenario construction, candidate POI selection, dialogue generation, automated quality validation (turn structure, action coverage, POI/review references, per-quote fuzzy match >= 0.80 partial ratio), and difficulty annotation (Easy/Medium/Hard/Expert).",
+  "rai:dataAnnotationProtocol": "Per-turn annotations (action label, referenced_poi_ids, referenced_review_ids, acceptable_alternative_poi_ids, citation pointers, discovered_review_ids) are produced jointly with dialogue generation by the LLM under structured DSPy signatures and validated by automated checks. A secondary ALCE-style human evaluation pilot used five trained annotators rating 90 items (30 dialogues x 3 baselines: TF-IDF, RAG-Citation, LLM Zero-Shot) for citation precision, informativeness, and naturalness; Krippendorff's alpha is 0.31-0.58 across labels. Twenty additional dialogues received blind-written expert-author recommendations (POI Jaccard = 0.437, n=215).",
+  "rai:dataPreprocessingProtocol": "POIs were drawn from the Yelp Open Dataset business and review files (yelp_academic_dataset_business.json, yelp_academic_dataset_review.json), filtered to 8 U.S. cities x 3 POI types x 100 POIs (= 2,400 POIs) with up to 15 reviews per POI (>= 5 minimum). Verbatim review spans cited by the LLM during dialogue generation were detected via fuzzy substring matching (>= 0.90 partial ratio) against the source review and replaced with [Q:N] placeholders. Quote-span metadata stores only (review_id, [start, end]) for exact quotes (~86% of cases) and (review_id, [start, end], edits) for near-verbatim quotes (~11%) where edits use whitelisted punctuation only (no Yelp word content). Splits are stratified by (city, difficulty) with seed 42.",
+  "rai:dataReleaseMaintenancePlan": "The dataset is released under CC BY 4.0 for our authored content. Versions follow semver (current: 1.0.0). Issues, bug reports, and dataset corrections are tracked via the review system associated with the submission during review and via a public issue tracker after acceptance. Maintenance commitment: active corrections for at least 24 months post-publication, with deprecated versions kept available via git revisions. Yelp-content reconstruction is guaranteed against any Yelp Open Dataset snapshot listed in the README compatibility matrix; new snapshots will be tested and added as Yelp publishes them.",
+  "rai:dataUseCases": "Intended uses: (1) benchmarking conversational recommender systems on the joint axes of accuracy, citation grounding, and recovery; (2) studying the trade-off between LLM-style fluency and verbatim-evidence faithfulness in recommendation; (3) developing rejection-handling and aspect-synthesis techniques for multi-turn dialogue; (4) calibrating automated grounding metrics (CGS, NLI-entailment) against human judgments. Out-of-scope uses: production deployment for tourism advice without independent verification of POI accuracy, freshness, and licensing; commercial use of any Yelp-derived component without separate authorization from Yelp.",
+  "rai:dataBiases": "Known biases: (1) Geographic - 8 mid-sized U.S. cities only (Indianapolis, Nashville, New Orleans, Philadelphia, Reno, Saint Louis, Tampa, Tucson); not representative of major metros, rural areas, or non-U.S. tourism. (2) Linguistic - U.S. English only; review style and user-preference expression follow Yelp/U.S. conventions. (3) Source - Yelp reviews skew toward businesses with strong online presence and active reviewer communities; long-tail or recently-opened venues are under-represented. (4) Persona - 47 hand-curated personas tilt toward common traveler archetypes; less coverage for accessibility-focused, elderly, or non-leisure travelers. (5) Generator - all dialogues come from a single LLM family (gpt-5.4-mini); stylistic patterns and reasoning biases of that model are inherited. (6) Visibility amplification - selecting top-rated POIs as candidates may reinforce attention to already popular venues.",
+  "rai:dataLimitations": "Synthetic-dialogue artifact: dialogues are LLM-generated, not transcripts of real users, and may not capture full pragmatic complexity (multi-constraint negotiation, temporal availability, accessibility needs). Single-generator dependence: model-family-sensitive findings (notably rejection recovery) need cross-model replication. Open-set heterogeneity: baselines expose different candidate-access mechanisms; open-set comparisons are system-level rather than pure model quality. Human-eval scale: 90 items with five annotators is a calibration pilot, not a leaderboard. Grounding metric: composite CGS uses a hand-tuned CD/0.05 gate; baseline rankings should be cross-checked under alternative gates. Yelp dependency: the full knowledge base requires user-side reconstruction from a Yelp Open Dataset bundle; review text is not redistributed.",
+  "rai:dataSocialImpact": "Positive: pushes CRS evaluation toward verifiable, audited recommendations rather than opaque scoring, which is particularly important in high-stakes consumer decisions like travel and hospitality. Risks: (1) over-optimization toward citation-density proxies may encourage excessive verbatim quoting rather than semantically supported reasoning; (2) deployments on Yelp-style data may concentrate attention on already popular venues, contributing to overtourism and neighborhood-level visibility inequities; (3) Yelp reviews encode social, geographic, and demographic biases that propagate to systems trained or evaluated on TRACE; (4) tourism recommendation can be misused to surface or hide specific businesses for commercial gain. Users deploying TRACE-trained systems should audit recommendation distributions for fairness across neighborhoods, price tiers, and minority-owned businesses.",
+  "rai:personalSensitiveInformation": "The dataset does not contain personal data of real individuals. User personas are synthetic archetypes (e.g., 'budget-conscious solo traveler') and do not correspond to any real user. Yelp reviewer identifiers, user names, and account data are NOT included. POI references identify businesses (Yelp business_id) and review IDs (Yelp review_id) as bare factual identifiers; no reviewer-attributable text is redistributed. Content moderation: dialogues were generated under DSPy structured signatures with a system prompt that excludes personal-identifier fabrication; no manual safety review was performed beyond automated validation."
+}

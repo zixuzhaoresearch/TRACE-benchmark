@@ -1,0 +1,7 @@
+.venv/
+uv.lock
+*.egg-info/
+__pycache__/
+*.pyc
+results/
+knowledge_base/pois_full.jsonl.gz

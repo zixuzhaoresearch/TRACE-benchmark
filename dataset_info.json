@@ -1,0 +1,42 @@
+{
+  "name": "TRACE",
+  "version": "1.0.0",
+  "description": "Tourism Recommendation with Accountable Citation Evidence: a 10K-dialogue conversational recommendation benchmark with review-grounded citations and open-set evaluation.",
+  "splits": {
+    "train": {
+      "num_dialogues": 8001
+    },
+    "validation": {
+      "num_dialogues": 999
+    },
+    "test": {
+      "num_dialogues": 1000
+    }
+  },
+  "knowledge_base": {
+    "num_pois": 2400,
+    "num_review_ids": 34208,
+    "review_text": "NOT_DISTRIBUTED — reconstruct via scripts/reconstruct_kb.py"
+  },
+  "license": {
+    "our_content": "CC BY 4.0",
+    "yelp_derived": "Yelp Dataset Terms of Use (academic, non-commercial); see NOTICE.md"
+  },
+  "cities": [
+    "Indianapolis",
+    "Nashville",
+    "New Orleans",
+    "Philadelphia",
+    "Reno",
+    "Saint Louis",
+    "Tampa",
+    "Tucson"
+  ],
+  "poi_types": [
+    "attraction",
+    "hotel",
+    "restaurant"
+  ],
+  "split_seed": 42,
+  "split_method": "stratified by (city, difficulty), sha256(dialogue_id|seed) ordering"
+}
