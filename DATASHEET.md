@@ -8,10 +8,10 @@ Following Gebru et al. (2021), *Datasheets for Datasets*.
 TRACE is a benchmark for **conversational recommendation with citation grounding** in the tourism domain. It tests whether systems can (a) recommend appropriate points of interest in a multi-turn dialogue, (b) ground their recommendations in verbatim review evidence, and (c) handle open-set candidate pools where the gold POI is not pre-filtered.
 
 **Who created the dataset and on behalf of whom?**
-*Withheld for anonymous review.* Identifying details will be added upon paper acceptance.
+See `CITATION.bib`. (For the anonymous review version of this release, identifying details are withheld.)
 
 **Funding sources**
-*Withheld for anonymous review.*
+See acknowledgments in the accompanying paper.
 
 ## Composition
 
@@ -101,7 +101,7 @@ Code is bundled with the release; the full source repo will be linked once de-an
 ## Maintenance
 
 **Who is supporting/hosting/maintaining?**
-*Withheld for anonymous review.* Errata channel will be added upon paper acceptance.
+See `CITATION.bib`. Issues / errata via the repository linked in `dataset_info.json`.
 
 **Update plans**
 - Multi-reference annotations for the current dialogue ID range (in progress).

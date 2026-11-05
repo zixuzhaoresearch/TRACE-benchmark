@@ -1,6 +1,42 @@
-# TRACE: Tourism Recommendation with Accountable Citation Evidence
+---
+license: cc-by-4.0
+license_name: cc-by-4.0-and-yelp-tou
+license_link: https://huggingface.co/datasets/taoist/TRACE/blob/main/NOTICE.md
+pretty_name: "TRACE: Tourism Recommendation with Accountable Citation Evidence"
+language:
+  - en
+task_categories:
+  - text-generation
+  - text-retrieval
+tags:
+  - conversational-recommendation
+  - tourism
+  - point-of-interest
+  - citation-grounding
+  - rejection-recovery
+  - multi-turn-dialogue
+  - benchmark
+  - yelp
+size_categories:
+  - 10K<n<100K
+configs:
+  - config_name: default
+    data_files:
+      - split: train
+        path: data/train.jsonl.gz
+      - split: validation
+        path: data/validation.jsonl.gz
+      - split: test
+        path: data/test.jsonl.gz
+  - config_name: knowledge_base
+    data_files:
+      - split: pois
+        path: knowledge_base/pois.jsonl.gz
+      - split: review_index
+        path: knowledge_base/review_index.jsonl.gz
+---
 
-> **Anonymous review submission.** This package omits identifying information (authors, affiliations, repository URLs, dataset DOIs). The de-anonymized public release will be made available upon paper acceptance.
+# TRACE: Tourism Recommendation with Accountable Citation Evidence
 
 A 10,000-dialogue conversational recommendation benchmark with **review-grounded citations** and **open-set evaluation**, spanning 8 U.S. cities and 2,400 points of interest (restaurants, attractions, hotels) sourced from the Yelp Open Dataset.
 
@@ -235,4 +271,4 @@ Full BibTeX in `CITATION.bib`.
 
 ## Issues / contact
 
-This anonymous release does not expose a contact channel. Issues with `reconstruct_kb.py` (e.g., missing review IDs) can be raised via the review system associated with the submission.
+See the project repository linked in `dataset_info.json`. If you encounter coverage gaps in `reconstruct_kb.py`, please report the missing review IDs.

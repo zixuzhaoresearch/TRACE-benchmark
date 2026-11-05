@@ -16,7 +16,7 @@
   "knowledge_base": {
     "num_pois": 2400,
     "num_review_ids": 34208,
-    "review_text": "NOT_DISTRIBUTED — reconstruct via scripts/reconstruct_kb.py"
+    "review_text": "NOT_DISTRIBUTED \u2014 reconstruct via scripts/reconstruct_kb.py"
   },
   "license": {
     "our_content": "CC BY 4.0",

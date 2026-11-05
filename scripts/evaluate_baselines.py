@@ -1234,12 +1234,7 @@ def parse_args():
     parser.add_argument(
         '--api-key-env',
         default='OPENAI_API_KEY',
-        help=(
-            'Env var holding the API key for LLM baselines. '
-            'Use OPENAI_API_KEY for default 3x group, '
-            'CODEX_API_KEY for Codex特价 0.2x (gpt-5.x), '
-            'CLAUDE_CODE_API_KEY for ClaudeCode逆向 0.4x (claude-*).'
-        ),
+        help='Env var holding the API key for the LLM baselines (e.g. OPENAI_API_KEY).',
     )
     parser.add_argument(
         '--use-llm-judge',
