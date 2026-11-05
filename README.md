@@ -253,11 +253,12 @@ Stratified by `(city, difficulty)` with seed `42`. Per-bucket ordering is `sha25
 If you use TRACE, please cite both our paper and the Yelp Open Dataset:
 
 ```bibtex
-@misc{trace2026,
-  title  = {TRACE: Tourism Recommendation with Accountable Citation Evidence},
-  author = {<author list>},
-  year   = {2026},
-  note   = {Dataset: \url{https://doi.org/<dataverse-doi>}}
+@inproceedings{trace2026,
+  title     = {TRACE: Tourism Recommendation with Accountable Citation Evidence},
+  author    = {Zhao, Zixu and Wang, Sijin and Hou, Yu and Xu, Yuanyuan and Sheng, Yufan and Xie, Xike and Zhang, Wenjie and Shin, Won-Yong and Cao, Xin},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track},
+  year      = {2026},
+  note      = {Dataset: \url{https://huggingface.co/datasets/taoist/TRACE}; code: \url{https://github.com/zixuzhaoresearch/TRACE-benchmark}}
 }
 
 @misc{yelp_open_dataset,
