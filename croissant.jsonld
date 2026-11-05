@@ -464,7 +464,75 @@
   "creator": [
     {
       "@type": "Person",
-      "name": "Zixu Zhao"
+      "name": "Zixu Zhao",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "UNSW Sydney"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Sijin Wang",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of Adelaide"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Yu Hou",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Yonsei University"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Yuanyuan Xu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "UNSW Sydney"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Yufan Sheng",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "UNSW Sydney"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Xike Xie",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of Science and Technology of China"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Wenjie Zhang",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "UNSW Sydney"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Won-Yong Shin",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Yonsei University"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Xin Cao",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "UNSW Sydney"
+      }
     }
   ],
   "keywords": [
